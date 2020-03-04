@@ -1,20 +1,28 @@
-export function handleSubmit(event) {
-  alert('hei')
-  event.preventDefault()
-
-  // check what text was put into the form field
-  let formText = document.getElementById('name').value
-
-  console.log("::: Form Submitted :::")
-
-}
-
 document.getElementById('submit-btn').addEventListener('click', () => {
   event.preventDefault();
-  fetch('http://localhost:8081/getForcast')
-    .then(res => res.json())
-    .then(function (res) {
-      alert(res.message)
-    })
-  
-})
+  console.log(document.getElementById('date').value )
+  const data = { location: document.getElementById('location').value };
+  getForecast(data).then(async (res) => {
+    try {
+      const result = await res.json();
+      if (result) {
+        alert(result.msg);
+      }
+    } catch (error) {
+      alert('error occoured! try again.');
+    }
+  });
+});
+
+const getForecast = async (data) => {
+  return await fetch(`http://localhost:8081/getForecast`, {
+    method: 'POST',
+    mode: 'cors',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+}
