@@ -3,20 +3,21 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
-
 const apiList = {
-  geonames : {
-    baseUrl:'http://api.geonames.org/',
+  geonames: {
+    baseUrl: 'http://api.geonames.org',
     api: process.env.GEONAMES_API_KEY
   },
-  darksky : {
-    baseUrl:'https://api.darksky.net/forecast/',
+  darksky: {
+    baseUrl: 'https://api.darksky.net',
     api: process.env.DARKSKY_API_KEY
   },
-  pixabay : {
-    baseUrl:'https://pixabay.com/api/',
+  pixabay: {
+    baseUrl: 'https://pixabay.com/api',
     api: process.env.PIXABAY_API_KEY
   }
 }
@@ -30,17 +31,33 @@ app.get('/', function (req, res) {
   res.sendFile('dist/index.html');
 })
 
-// designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
   console.log('Example app listening on port 8081!');
 })
 
 app.post('/getForecast', function (req, res) {
-  const data = { ...req.body };
-  fetch('https://api.github.com/users/github')
+  const { date, location, isFuture, daysAhead } = req.body;
+
+  // geonames api call
+  const geonamesReq = `${apiList.geonames.baseUrl}/searchJSON?q=${location}&maxRows=10&username=${apiList.geonames.api}`;
+  fetch(geonamesReq)
     .then(res => res.json())
-    .then(json => (
-      console.log(json)
-    ));
-  res.send({msg: 'from api utto'});
+    .then(json => {
+      // getting latitude and longitude
+      const lat = json.geonames[0].lat;
+      const lng = json.geonames[0].lng;
+
+      // darksky api call
+      const darkskyReq = `${apiList.darksky.baseUrl}/forecast/${apiList.darksky.api}/${lat},${lng},${date}${isFuture ? '?exclude=currently,flags' : ''}`;
+      fetch(darkskyReq)
+        .then(res => res.json())
+        .then(json => {
+          const summary = json.daily.data[0].summary;
+          const tempHigh = json.daily.data[0].temperatureHigh;
+          const tempLow = json.daily.data[0].temperatureLow;
+          const sumObj = { summary: summary, tempHigh: tempHigh, tempLow: tempLow };
+          res.send(sumObj);
+        });
+    });
+
 })

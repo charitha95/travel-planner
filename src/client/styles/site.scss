@@ -16,6 +16,9 @@ button {
   background-color: $bg-color;
   display: flex;
 
+  span {
+    font-weight: 600;
+  }
   .left,
   .right {
     flex: 1;
@@ -93,7 +96,7 @@ button {
       .header {
         display: flex;
         color: white;
-        margin-top: 50px;
+        margin-top: 35px;
         label {
           color: rgba(white, 0.7);
         }
@@ -107,18 +110,28 @@ button {
         }
       }
       .temp {
-        margin-top: 40px;
+        margin-top: 30px;
         display: flex;
         justify-content: center;
         color: whitesmoke;
         h1 {
-          font-size: 64px;
+          font-size: 52px;
           font-weight: 600;
         }
         figure {
+          margin-left: 25px;
+          margin-right: 25px;
           width: 15%;
           img {
             width: 100%;
+          }
+        }
+        .type {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          label {
+            text-align: center;
           }
         }
       }
@@ -131,6 +144,10 @@ button {
         letter-spacing: 1px;
         * {
           margin-bottom: 5px;
+        }
+        label {
+          padding: 0 20px;
+          text-align: center;
         }
       }
     }

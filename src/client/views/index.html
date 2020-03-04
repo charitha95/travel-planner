@@ -34,26 +34,32 @@
             <section class="header">
               <div class="trip">
                 <label>Trip to</label>
-                <h3>--</h3>
+                <h3 id="trip-to">--</h3>
               </div>
               <div class="date">
                 <label>On</label>
-                <h3>--</h3>
+                <h3 id="trip-on">--</h3>
               </div>
             </section>
             <section class="temp">
-              <h1>--</h1>
-              <label>C</label>
+              <div class="type">
+                <label>high</label>
+                <h1 id='high'>-</h1>
+              </div>
               <figure>
                 <img src="https://image.flaticon.com/icons/svg/1146/1146869.svg" alt="Kiwi standing on oval">
               </figure>
+              <div class="type">
+                <label>low</label>
+                <h1 id='low'>-</h1>
+              </div>
             </section>
             <section class="meta-info">
               <label>
-                this trip is 22 days away!
+                this trip is <span id='day-info'>--</span>
               </label>
               <label>
-                By then it is mostly cloudly throughout the day.
+               Typical weather for then is <span id='weather'>-</span>.
               </label>
             </section>
             <section class="footer">
