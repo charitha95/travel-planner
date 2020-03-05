@@ -1,5 +1,5 @@
-import { handleSubmit } from './js/app';
+import  app  from './js/app';
 import './styles/resets.scss';
 import './styles/site.scss';
 
-export { handleSubmit }
+export default app ;

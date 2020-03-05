@@ -1,3 +1,4 @@
+
 document.getElementById('submit-btn').addEventListener('click', () => {
   event.preventDefault();
   const location = document.getElementById('location').value;
@@ -70,6 +71,7 @@ const getForecast = async (data) => {
     body: JSON.stringify(data),
   });
 }
+
 const setSavedList = () => {
   const fragment = document.createDocumentFragment();
   const container = document.getElementById('recently-added');
@@ -126,4 +128,3 @@ const setSavedList = () => {
 (() => {
   setSavedList();
 })();
-
