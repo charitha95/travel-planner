@@ -55,8 +55,16 @@ app.post('/getForecast', function (req, res) {
           const summary = json.daily.data[0].summary;
           const tempHigh = json.daily.data[0].temperatureHigh;
           const tempLow = json.daily.data[0].temperatureLow;
-          const sumObj = { summary: summary, tempHigh: tempHigh, tempLow: tempLow };
-          res.send(sumObj);
+
+          // pixabay api call
+          const pixabayReq = `${apiList.pixabay.baseUrl}//?key=${apiList.pixabay.api}&category=place&q=${location}&image_type=photo}`;
+          fetch(pixabayReq)
+            .then(res => res.json())
+            .then(json => {
+              const img = json.hits[0].webformatURL;
+              const sumObj = { summary: summary, tempHigh: tempHigh, tempLow: tempLow, img: img };
+              res.send(sumObj);
+            });
         });
     });
 
