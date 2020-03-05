@@ -1,18 +1,28 @@
-# Webbpack Express Example App
+# Travel Application
+<br/>
 
-The goal of this repo is be an example of a basic but functional app built on Express and Webpack.
 
-If you want to follow along, start from master and look at the numbered branches of this project. Each one is a step along the path to creating a fully functional webpack setup. In each branch, there will be a documentation file that lists out the steps taken in that branch (each step should also match to a git commit if you look at the history) which you can use as a checklist when setting up your own projects. 
+![react](https://img.shields.io/badge/webpack-4.41.6-blue?style=flat&logo=webpack)
+![react](https://img.shields.io/badge/sass-4.12-f42b8f?style=flat&logo=sass)
+<br/><br/>
 
-## Get Up and Running
+## Description :newspaper:
 
-Fork this repo, then clone your forked repo down to your computer:
+This is the last submission of the Frontend Nano Degree and it is required to create app application from the scratch with webpack, service workers and small express server.
+<br/><br/>
 
-```
-git clone -- git@github.com:[your-user-name]/webpack-express.git --
-```
+## Installing dependencies :wrench: 
+- Copy the url https://github.com/charitha95/travel-planner
+- Do a `git clone` with the url.
+- Run `yarn` in terminal to install modules.
+<br/><br/>
 
-`cd` into your new folder and run:
-- ```npm install```
-- ```npm start``` to start the app
-- this app runs on localhost:3000, but you can of course edit that in server.js
+
+## Running/Building the project  :hammer:
+| Environment| Command
+| ------| ----|
+| Webpack Dev| `yarn dev` |
+| Node | `yarn start`|
+| Test| `yarn start.test` |
+| RC  | `yarn start.staging` |
+| Prod| `yarn prod`|
