@@ -23,6 +23,5 @@ This is the last submission of the Frontend Nano Degree and it is required to cr
 | ------| ----|
 | Webpack Dev| `yarn dev` |
 | Node | `yarn start`|
-| Test| `yarn start.test` |
-| RC  | `yarn start.staging` |
+| Test| `yarn test` |
 | Prod| `yarn prod`|
