@@ -36,8 +36,7 @@ app.listen(8081, function () {
 })
 
 app.post('/getForecast', function (req, res) {
-  const { date, location, isFuture, daysAhead } = req.body;
-
+  const { date, location, isFuture } = req.body;
   // geonames api call
   const geonamesReq = `${apiList.geonames.baseUrl}/searchJSON?q=${location}&maxRows=10&username=${apiList.geonames.api}`;
   fetch(geonamesReq)
