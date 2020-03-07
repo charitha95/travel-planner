@@ -7,20 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-const apiList = {
-  geonames: {
-    baseUrl: 'http://api.geonames.org',
-    api: process.env.GEONAMES_API_KEY
-  },
-  darksky: {
-    baseUrl: 'https://api.darksky.net',
-    api: process.env.DARKSKY_API_KEY
-  },
-  pixabay: {
-    baseUrl: 'https://pixabay.com/api',
-    api: process.env.PIXABAY_API_KEY
-  }
-}
+const apiList = getApiMeta()
 
 app.use(express.static('dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,4 +54,22 @@ app.post('/getForecast', function (req, res) {
         });
     });
 
-})
+});
+
+function getApiMeta() {
+  return {
+    geonames: {
+      baseUrl: 'http://api.geonames.org',
+      api: process.env.GEONAMES_API_KEY
+    },
+    darksky: {
+      baseUrl: 'https://api.darksky.net',
+      api: process.env.DARKSKY_API_KEY
+    },
+    pixabay: {
+      baseUrl: 'https://pixabay.com/api',
+      api: process.env.PIXABAY_API_KEY
+    }
+  }
+}
+module.exports = { getApiMeta };
